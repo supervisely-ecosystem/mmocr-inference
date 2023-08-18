@@ -18,6 +18,7 @@ for pred in predictions:
     print(texts)
     labels = []
     for text, text_score, rect, rect_score in zip(*list(pred.values())):
+        # convert rectangles to sly.Rectangle
         assert len(rect) == 8
         rect = list(map(int, rect))
         x,y = rect[::2], rect[1::2]
