@@ -31,3 +31,4 @@ for pred in predictions:
 ann.draw_pretty(img, thickness=1)
 
 sly.image.write("demo_pred.jpg", img)
+sly.json.dump_json_file(texts, "texts.json")
