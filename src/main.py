@@ -81,7 +81,8 @@ def main() -> None:
         sly.logger.debug(f"Running inference on {len(image_paths)} images")
 
         with sly.tqdm_sly(
-            len(image_paths), message=f"Running inference on images from dataset {dataset_name}"
+            total=len(image_paths),
+            message=f"Running inference on images from dataset {dataset_name}",
         ) as pbar:
             for image_path in image_paths:
                 ann = inference.get_ann(image_path)
