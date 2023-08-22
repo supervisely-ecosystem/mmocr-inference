@@ -23,21 +23,11 @@ def save_predictions(image_paths: List[str], output_dataset_id: int):
         for pred, image_path in zip(predictions, image_paths):
             img_name, _ = os.path.splitext(os.path.basename(image_path))
 
-            # dataset_name = os.path.basename(os.path.dirname(image_path))
-            # dataset_dir = os.path.join(g.PROJECT_DIR, dataset_name)
-            # os.makedirs(dataset_dir, exist_ok=True)
-            # save_path = os.path.join(dataset_dir, f"{img_name}.json")
-            # texts = pred["rec_texts"]
-
             labels = []
             for text, text_score, rect, rect_score in zip(*list(pred.values())):
-                # ! Debug prints
-                print("Text:", text)
-                print("Text score:", text_score)
-
                 assert len(rect) == 8
                 label = f.det_polygon_2_label(rect)
-                label.add_tag(sly.Tag(g.TAG_META, text))
+                label = label.add_tag(sly.Tag(g.TAG_META, text))
                 labels.append(label)
 
             img = sly.image.read(image_path)
