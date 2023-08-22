@@ -1,4 +1,5 @@
 from typing import List
+from tqdm import tqdm
 
 import supervisely as sly
 
@@ -77,7 +78,7 @@ def upload_images_with_anns(
     """
     sly.logger.debug(f"Uploading {len(image_paths)} images to dataset with ID: {output_dataset_id}")
 
-    with sly.tqdm_sly(total=len(image_paths), message="Uploading images") as pbar:
+    with tqdm(total=len(image_paths), message="Uploading images") as pbar:
         for batched_img_paths, batched_img_names, batched_anns in zip(
             sly.batched(image_paths), sly.batched(image_names), sly.batched(anns)
         ):
