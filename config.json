@@ -14,6 +14,7 @@
   "instance_version": "6.6.7",
   "entrypoint": "python src/main.py",
   "port": 8000,
+  "headless": true,
   "task_location": "workspace_tasks",
   "context_menu": {
     "target": ["images_project", "images_dataset"]
