@@ -76,8 +76,21 @@ def main() -> None:
         sly.logger.debug(f"Downloaded {len(image_paths)} images to {dataset_dir}")
 
         output_dataset_id = f.create_output_dataset(dataset_name, g.OUTPUT_PROJECT_ID)
+        anns = []
 
-        inference.save_predictions(image_paths, output_dataset_id)
+        sly.logger.debug(f"Running inference on {len(image_paths)} images")
+
+        with sly.tqdm_sly(
+            len(image_paths), message=f"Running inference on images from dataset {dataset_name}"
+        ) as pbar:
+            for image_path in image_paths:
+                ann = inference.get_ann(image_path)
+                anns.append(ann)
+                pbar.update(1)
+
+        sly.logger.debug(f"Finished inference on {len(image_paths)} images")
+
+        f.upload_images_with_anns(image_ids, image_names, anns, output_dataset_id)
 
         sly.logger.info(f"Finished processing dataset: {dataset_name} with ID: {dataset_id}")
 

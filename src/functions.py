@@ -57,15 +57,15 @@ def det_polygon_2_label(rect: List) -> sly.Label:
 
 
 def upload_images_with_anns(
-    image_paths: List[str],
+    image_ids: List[int],
     image_names: List[str],
     anns: List[sly.Annotation],
     output_dataset_id: int,
 ) -> None:
     """Uploads images with annotations to Supervisely.
 
-    :param image_paths: list of local paths to the images.
-    :type image_paths: List[str]
+    :param image_ids: list of image IDs.
+    :type image_ids: List[int]
     :param image_names: list of image names (filenames).
     :type image_names: List[str]
     :param anns: list of Supervisely annotations.
@@ -75,23 +75,23 @@ def upload_images_with_anns(
     :return: None
     :rtype: None
     """
-    sly.logger.debug(f"Uploading {len(image_paths)} images to dataset with ID: {output_dataset_id}")
+    sly.logger.debug(f"Uploading {len(image_ids)} images to dataset with ID: {output_dataset_id}")
 
-    with sly.tqdm_sly(total=len(image_paths), message="Uploading images") as pbar:
-        for batched_img_paths, batched_img_names, batched_anns in zip(
-            sly.batched(image_paths), sly.batched(image_names), sly.batched(anns)
+    with sly.tqdm_sly(total=len(image_ids), message="Uploading images") as pbar:
+        for batched_img_ids, batched_img_names, batched_anns in zip(
+            sly.batched(image_ids), sly.batched(image_names), sly.batched(anns)
         ):
-            uploaded_image_infos = g.api.image.upload_paths(
-                output_dataset_id, batched_img_names, batched_img_paths
+            uploaded_image_infos = g.api.image.upload_ids(
+                output_dataset_id, batched_img_names, batched_img_ids
             )
             uploaded_image_ids = [image_info.id for image_info in uploaded_image_infos]
             g.api.annotation.upload_anns(uploaded_image_ids, batched_anns)
-            pbar.update(len(batched_img_paths))
+            pbar.update(len(batched_img_ids))
 
             sly.logger.debug(
-                f"Uploaded batch of {len(batched_img_paths)} images to dataset with ID: {output_dataset_id}"
+                f"Uploaded batch of {len(batched_img_ids)} images to dataset with ID: {output_dataset_id}"
             )
 
     sly.logger.debug(
-        f"Finished uploading {len(image_paths)} images to dataset with ID: {output_dataset_id}"
+        f"Finished uploading {len(image_ids)} images to dataset with ID: {output_dataset_id}"
     )

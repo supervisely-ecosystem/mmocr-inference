@@ -39,14 +39,14 @@ else:
     DEVICE = "cuda"
     sly.logger.info("GPU is available. Using CUDA.")
 
-BATCH_SIZE = 2
+BATCH_SIZE = 1
 sly.logger.info(f"Device: {DEVICE}, batch size: {BATCH_SIZE}")
 
 # Names of the tag and objects, which will be added to output project.
 # Can be changed to any other names.
-TAG_NAME = "text_rec"
+TAG_NAME = "ocr"
 TAG_META = None
-OBJECT_NAME = "text_det"
+OBJECT_NAME = "text"
 OBJECT_CLASS = sly.ObjClass(OBJECT_NAME, sly.Rectangle, [0, 255, 0])
 OUTPUT_PROJECT_ID = None
 
