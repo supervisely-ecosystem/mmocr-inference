@@ -34,6 +34,7 @@ BATCH_SIZE = 2
 sly.logger.info(f"Device: {DEVICE}, batch size: {BATCH_SIZE}")
 
 TAG_NAME = "text_rec"
+TAG_META = None
 OBJECT_NAME = "text_det"
 OBJECT_CLASS = sly.ObjClass(OBJECT_NAME, sly.Rectangle, [0, 255, 0])
 OUTPUT_PROJECT_ID = None

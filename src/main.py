@@ -21,6 +21,8 @@ if not project_meta.tag_metas.get(g.TAG_NAME):
     project_meta = project_meta.add_tag_meta(new_tag)
     sly.logger.debug(f"Tag {g.TAG_NAME} was added to project meta.")
 
+g.TAG_META = project_meta.tag_metas.get(g.TAG_NAME)
+
 if not project_meta.obj_classes.get(g.OBJECT_NAME):
     sly.logger.debug(f"Object class {g.OBJECT_NAME} was not found in project meta. Adding...")
     project_meta = project_meta.add_obj_class(g.OBJECT_CLASS)

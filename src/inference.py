@@ -33,7 +33,7 @@ def save_predictions(image_paths: List[str], output_dataset_id: int):
             for text, text_score, rect, rect_score in zip(*list(pred.values())):
                 assert len(rect) == 8
                 label = f.det_polygon_2_label(rect)
-                label.add_tag(sly.Tag(g.TAG_NAME, text))
+                label.add_tag(sly.Tag(g.TAG_META, text))
                 labels.append(label)
 
             img = sly.image.read(image_path)
