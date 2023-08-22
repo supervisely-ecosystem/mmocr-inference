@@ -1,8 +1,8 @@
 import os
 import supervisely as sly
 
-import src.globals as g
-import src.inference as inference
+import globals as g
+import inference as inference
 
 app = sly.Application()
 

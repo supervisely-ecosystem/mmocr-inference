@@ -3,7 +3,7 @@ from mmocr.apis import MMOCRInferencer
 
 import supervisely as sly
 
-import src.globals as g
+import globals as g
 
 
 model = MMOCRInferencer(det="DBNetpp", rec="ABINet", device=g.DEVICE)
