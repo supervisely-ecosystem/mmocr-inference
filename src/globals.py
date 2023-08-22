@@ -25,6 +25,7 @@ sly.logger.info(
 
 PROJECT_NAME = api.project.get_info_by_id(PROJECT_ID).name
 
+# Names of the model, which will be used in inference.
 DET_MODEL = "DBNetpp"
 REC_MODEL = "ABINet"
 sly.logger.info(f"Detection model: {DET_MODEL}, recognition model: {REC_MODEL}")
@@ -33,6 +34,8 @@ DEVICE = "cuda"
 BATCH_SIZE = 2
 sly.logger.info(f"Device: {DEVICE}, batch size: {BATCH_SIZE}")
 
+# Names of the tag and objects, which will be added to output project.
+# Can be changed to any other names.
 TAG_NAME = "text_rec"
 TAG_META = None
 OBJECT_NAME = "text_det"

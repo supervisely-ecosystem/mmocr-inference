@@ -5,16 +5,22 @@ import globals as g
 import functions as f
 import inference as inference
 
-# app = sly.Application()
-
 if not g.DATASET_ID:
     datasets_ids = [dataset_info.id for dataset_info in g.api.dataset.get_list(g.PROJECT_ID)]
 else:
     datasets_ids = [g.DATASET_ID]
 
+sly.logger.debug(f"The app will working with following dataset IDs: {datasets_ids}")
+
 
 @sly.handle_exceptions
-def prepare_output_project():
+def prepare_output_project() -> None:
+    """Creates output project and adds tag meta and object class to it if they don't exist.
+    Saves tag meta and object class to global variables to access them from inference.
+
+    :return: None
+    :rtype: None
+    """
     g.OUTPUT_PROJECT_ID = f.create_output_project()
     project_meta = sly.ProjectMeta.from_json(g.api.project.get_meta(g.PROJECT_ID))
     sly.logger.debug("Retrieved project meta for input project")
@@ -45,7 +51,14 @@ def prepare_output_project():
 
 
 @sly.handle_exceptions
-def main():
+def main() -> None:
+    """Iterates over datasets, downloads images from them, runs inference on them and uploads images with annotations
+    to output project. Deletes temporary directory after finishing.
+
+    :return: None
+    :rtype: None
+    """
+
     for dataset_id in datasets_ids:
         dataset_name = g.api.dataset.get_info_by_id(dataset_id).name
         dataset_dir = os.path.join(g.TMP_PROJECT_DIR, dataset_name)
@@ -66,8 +79,11 @@ def main():
 
         inference.save_predictions(image_paths, output_dataset_id)
 
+        sly.logger.info(f"Finished processing dataset: {dataset_name} with ID: {dataset_id}")
 
-# app.shutdown()
+    sly.logger.info("The app finished processing datasets and will be stopped now.")
+    sly.fs.remove_dir(g.TMP_DIR)
+    sly.logger.debug(f"Removed temporary directory: {g.TMP_DIR}")
 
 
 if __name__ == "__main__":
