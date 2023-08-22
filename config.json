@@ -3,14 +3,10 @@
   "type": "app",
   "version": "2.0.0",
   "description": "OCR inference",
-  "icon":"",
+  "icon": "",
   "icon_cover": true,
-  "poster":"",
-  "categories": [
-    "neural network",
-    "images",
-    "nn tools"
-  ],
+  "poster": "",
+  "categories": ["neural network", "images", "nn tools"],
   "need_gpu": false,
   "gpu": "preferred",
   "community_agent": false,

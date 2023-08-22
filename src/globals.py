@@ -30,7 +30,7 @@ DET_MODEL = "DBNetpp"
 REC_MODEL = "ABINet"
 sly.logger.info(f"Detection model: {DET_MODEL}, recognition model: {REC_MODEL}")
 
-DEVICE = "cuda"
+DEVICE = "cpu"
 BATCH_SIZE = 2
 sly.logger.info(f"Device: {DEVICE}, batch size: {BATCH_SIZE}")
 
