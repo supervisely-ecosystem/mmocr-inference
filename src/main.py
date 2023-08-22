@@ -1,33 +1,37 @@
 import os
-from mmocr.apis import MMOCRInferencer
 import supervisely as sly
-import utils
 
-device = "cuda"
-batch_size = 2
-output_dir = "results"
-os.makedirs(output_dir, exist_ok=True)
+import src.globals as g
+import src.inference as inference
 
-model = MMOCRInferencer(det="DBNetpp", rec='ABINet', device=device)
+app = sly.Application()
 
-image_paths = ["demo.png"]
-predictions = model(image_paths, batch_size)["predictions"]
+if not g.DATASET_ID:
+    datasets_ids = [dataset_info.id for dataset_info in g.api.dataset.get_list(g.PROJECT_ID)]
+else:
+    datasets_ids = [g.DATASET_ID]
 
-obj_class = sly.ObjClass("text_det", sly.Rectangle, [0, 255, 0])
-for pred, image_path in zip(predictions, image_paths):
-    img_name, _ = os.path.splitext(os.path.basename(image_path))
-    
-    # save texts
-    texts = pred["rec_texts"]
-    sly.json.dump_json_file(texts, f"{output_dir}/{img_name}.json")
+for dataset_id in datasets_ids:
+    dataset_name = g.api.dataset.get_info_by_id(dataset_id).name
+    dataset_dir = os.path.join(g.TMP_PROJECT_DIR, dataset_name)
+    os.makedirs(dataset_dir, exist_ok=True)
+    sly.logger.info(f"Processing dataset: {dataset_name} with ID: {dataset_id}")
 
-    # draw visualizations (debug)
-    labels = []
-    for text, text_score, rect, rect_score in zip(*list(pred.values())):
-        assert len(rect) == 8
-        label = utils.det_polygon_2_label(rect, obj_class)
-        labels.append(label)
-    img = sly.image.read(image_path)
-    ann = sly.Annotation(img.shape[:2], labels)
-    ann.draw_pretty(img, thickness=1)
-    sly.image.write(f"{output_dir}/{img_name}_pred.jpg", img)
+    image_infos = g.api.image.get_list(dataset_id)
+    sly.logger.debug(f"Found {len(image_infos)} images in dataset {dataset_name}")
+
+    image_ids = [image_info.id for image_info in image_infos]
+    image_names = [image_info.name for image_info in image_infos]
+    image_paths = [os.path.join(dataset_dir, image_name) for image_name in image_names]
+
+    g.api.image.download_paths(dataset_id, image_ids, image_paths)
+    sly.logger.debug(f"Downloaded {len(image_paths)} images to {dataset_dir}")
+
+    inference.dump_predictions(image_paths)
+    sly.logger.debug(f"Predictions were dumped to {g.OUTPUT_DIR}")
+
+    sly.output.set_download(g.OUTPUT_DIR)
+
+    sly.logger.info("Output directory archived and uploaded, the app will be stopped...")
+
+app.shutdown()
