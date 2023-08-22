@@ -1,11 +1,10 @@
 <div align="center" markdown>
 <img src="poster placeholder"/>
 
-# Placeholder for app short description
+# MMOCR Inference - Text Detection and Recognition on images
 
 <p align="center">
   <a href="#Overview">Overview</a> •
-  <a href="#Preparation">Preparation</a> •
   <a href="#How-To-Run">How To Run</a>
 </p>
 
@@ -19,19 +18,50 @@
 
 ## Overview
 
-Section for app overview. Describe what the app does, what are the benefits of using it, what is the expected output, etc.
+ℹ️ The application can be run both on GPU and CPU agents. It will automatically detect if GPU is available and use it in case it is. **Note:** running the app on the CPU agents will be slower.
 
-## Preparation
-
-Section for app preparation. Describe what the user should do before running the app. For example, upload images to the team storage, create a project, etc.
+This application allows you to run the MMOCR Text Detection and Recognition models on images. The application uses `DBNetpp` detection model and `ABINet` recognition model. The application will create a new project and datasets with the results of the inference, which will include rectangle annotations with text labels.
 
 ## How To Run
 
-Section for the app running. Describe how to run the app step by step.
+To run the app you will need a project with images. The app can be launched from Ecosystem, images project and images dataset.
 
-**Step 1:** Describe actions in step.<br><br>
+- [running the app from the Ecosystem](#running-the-app-from-the-ecosystem)
+- [running the app from the images project](#running-the-app-from-the-images-project)
+- [running the app from the images dataset](#running-the-app-from-the-images-dataset)
 
-**Step 2:** Describe actions in step.<br><br>
+### Running the app from the Ecosystem
+
+**Step 1:** Run the app<br><br>
+
 <img src="placeholder for screenshot"/><br><br>
 
-After finishing using the app, don't forget to stop the app session manually in the App Sessions. The app will write information about the text prompt and CLIP score to the image metadata. You can find this information in the Image Properties - Info section of the image in the labeling tool.
+**Step 2:** Select a project or a dataset and press the Run button<br><br>
+
+<img src="placeholder for screenshot"/><br><br>
+
+### Running the app from the images project
+
+**Step 1:** Run the app from a context menu of the images project<br><br>
+
+<img src="placeholder for screenshot"/><br><br>
+
+**Step 2:** Press the Run button<br><br>
+
+<img src="placeholder for screenshot"/><br><br>
+
+### Running the app from the images dataset
+
+**Step 1:** Run the app from a context menu of the images dataset<br><br>
+
+<img src="placeholder for screenshot"/><br><br>
+
+**Step 2:** Press the Run button<br><br>
+
+<img src="placeholder for screenshot"/><br><br>
+
+## Demo
+
+Example of running the app from Ecosystem with results:
+
+![](placeholder for gif)
