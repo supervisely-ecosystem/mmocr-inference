@@ -3,7 +3,7 @@ from mmocr.apis import MMOCRInferencer
 
 import supervisely as sly
 
-import globals as g
+import src.globals as g
 
 
 model = MMOCRInferencer(det="DBNetpp", rec="ABINet", device=g.DEVICE)
@@ -15,9 +15,10 @@ def dump_predictions(image_paths):
 
     for pred, image_path in zip(predictions, image_paths):
         img_name, _ = os.path.splitext(os.path.basename(image_path))
-        dataset_dir = os.path.basename(os.path.dirname(image_path))
+        dataset_name = os.path.basename(os.path.dirname(image_path))
+        dataset_dir = os.path.join(g.PROJECT_DIR, dataset_name)
         os.makedirs(dataset_dir, exist_ok=True)
-        save_path = os.path.join(g.PROJECT_DIR, dataset_dir, f"{img_name}.json")
+        save_path = os.path.join(dataset_dir, f"{img_name}.json")
         texts = pred["rec_texts"]
 
         sly.json.dump_json_file(texts, save_path)
