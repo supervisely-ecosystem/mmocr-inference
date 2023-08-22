@@ -16,11 +16,13 @@
 
 </div>
 
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262379234-c449c14f-6b37-4d95-9d9b-434355d626b4.png"><br><br>
+
 ## Overview
 
 ℹ️ The application can be run both on GPU and CPU agents. It will automatically detect if GPU is available and use it in case it is. **Note:** running the app on the CPU agents will be slower.
 
-This application allows you to run the MMOCR Text Detection and Recognition models on images. The application uses `DBNetpp` detection model and `ABINet` recognition model. The application will create a new project and datasets with the results of the inference, which will include rectangle annotations with text labels.
+This application allows you to run the MMOCR Text Detection and Recognition models on images. The application uses the `DBNetpp` detection model and `ABINet` recognition model. The application will create a new project and datasets with the results of the inference, which will include rectangle annotations with text labels.
 
 ## How To Run
 
