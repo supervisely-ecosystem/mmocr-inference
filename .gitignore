@@ -1,6 +1,4 @@
-/results
 __pycache__
 .venv
-demo.png
 .DS_Store
 .flake8
