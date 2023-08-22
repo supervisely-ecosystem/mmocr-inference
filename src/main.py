@@ -48,7 +48,7 @@ for dataset_id in datasets_ids:
 
     output_dataset_id = f.create_output_dataset(dataset_name, g.OUTPUT_PROJECT_ID)
 
-    inference.save_predictions_predictions(image_paths, output_dataset_id)
+    inference.save_predictions(image_paths, output_dataset_id)
 
 
 app.shutdown()
