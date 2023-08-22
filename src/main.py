@@ -68,26 +68,34 @@ def main() -> None:
         image_infos = g.api.image.get_list(dataset_id)
         sly.logger.debug(f"Found {len(image_infos)} images in dataset {dataset_name}")
 
+        output_dataset_id = f.create_output_dataset(dataset_name, g.OUTPUT_PROJECT_ID)
+
         image_ids = [image_info.id for image_info in image_infos]
         image_names = [image_info.name for image_info in image_infos]
         image_paths = [os.path.join(dataset_dir, image_name) for image_name in image_names]
 
-        g.api.image.download_paths(dataset_id, image_ids, image_paths)
-        sly.logger.debug(f"Downloaded {len(image_paths)} images to {dataset_dir}")
-
-        output_dataset_id = f.create_output_dataset(dataset_name, g.OUTPUT_PROJECT_ID)
         anns = []
 
-        sly.logger.debug(f"Running inference on {len(image_paths)} images")
+        sly.logger.debug(f"Starting download images from dataset {dataset_name} by batches...")
 
         with sly.tqdm_sly(
             total=len(image_paths),
             message=f"Running inference on images from dataset {dataset_name}",
         ) as pbar:
-            for image_path in image_paths:
-                ann = inference.get_ann(image_path)
-                anns.append(ann)
-                pbar.update(1)
+            for batched_image_ids, batched_image_paths in zip(
+                sly.batched(image_ids), sly.batched(image_paths)
+            ):
+                g.api.image.download_paths(dataset_id, batched_image_ids, batched_image_paths)
+                sly.logger.debug(
+                    f"Downloaded batch of {len(batched_image_ids)} images to {dataset_dir}"
+                )
+
+                for image_path in batched_image_paths:
+                    ann = inference.get_ann(image_path)
+                    anns.append(ann)
+                    pbar.update(1)
+
+                sly.logger.debug(f"Processed batch of {len(batched_image_ids)} images")
 
         sly.logger.debug(f"Finished inference on {len(image_paths)} images")
 

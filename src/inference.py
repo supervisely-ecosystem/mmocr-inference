@@ -38,6 +38,6 @@ def get_ann(image_path: str) -> sly.Annotation:
     img = sly.image.read(image_path)
     ann = sly.Annotation(img.shape[:2], labels)
 
-    sly.logger.debug(f"Process annotation for image {image_path}")
-
+    sly.logger.debug(f"Processed annotation for image {image_path}")
+    sly.fs.silent_remove(image_path)
     return ann
