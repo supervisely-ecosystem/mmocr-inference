@@ -1,4 +1,5 @@
 import os
+import torch
 
 from dotenv import load_dotenv
 
@@ -30,7 +31,14 @@ DET_MODEL = "DBNetpp"
 REC_MODEL = "ABINet"
 sly.logger.info(f"Detection model: {DET_MODEL}, recognition model: {REC_MODEL}")
 
-DEVICE = "cpu"
+# Automatically detect if CUDA is available and set the device.
+if not torch.cuda.is_available():
+    DEVICE = "cpu"
+    sly.logger.info("GPU is not available. Using CPU.")
+else:
+    DEVICE = "cuda"
+    sly.logger.info("GPU is available. Using CUDA.")
+
 BATCH_SIZE = 2
 sly.logger.info(f"Device: {DEVICE}, batch size: {BATCH_SIZE}")
 
