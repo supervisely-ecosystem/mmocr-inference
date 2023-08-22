@@ -2,7 +2,6 @@ import os
 
 from typing import List
 from mmocr.apis import MMOCRInferencer
-from tqdm import tqdm
 
 import supervisely as sly
 
@@ -30,7 +29,7 @@ def save_predictions(image_paths: List[str], output_dataset_id: int) -> None:
     image_names = []
     anns = []
 
-    with tqdm(total=len(image_paths), message="Saving predictions") as pbar:
+    with sly.tqdm_sly(total=len(image_paths), message="Saving predictions") as pbar:
         for pred, image_path in zip(predictions, image_paths):
             img_name, _ = os.path.splitext(os.path.basename(image_path))
 
