@@ -26,7 +26,7 @@ def get_ann(image_path: str) -> sly.Annotation:
     sly.logger.debug(f"Finished inference on image {image_path}")
 
     labels = []
-    for text, text_score, rect, rect_score in zip(*list(predictions.values())):
+    for text, text_score, rect, rect_score in zip(*list(predictions[0].values())):
         assert len(rect) == 8
         # Creating rectangle label from predicted polygon.
         label = f.det_polygon_2_label(rect)
