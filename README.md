@@ -82,7 +82,7 @@ You can manually edit tags and annotations in the [Supervisely Labeling Tool](ht
 
 <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262668435-80cb90e8-cba4-4eff-b59d-62d8a0710df9.png">
 
-## Option 2: Editing tags and annotations in the Object tags editor app
+## Option 2: Editing tags in the Object tags editor app
 
 You can use the [Object tags editor](https://ecosystem.supervisely.com/apps/object-tags-redactor) app for easy and convenient editing of the tags.<br>
 
