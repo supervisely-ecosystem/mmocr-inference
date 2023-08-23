@@ -16,11 +16,22 @@
 
 </div>
 
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262668367-6392abe9-8176-4c87-8533-115ed537049e.png">
+
 ## Overview
 
 ℹ️ The application can be run both on GPU and CPU agents. It will automatically detect if GPU is available and use it in case it is. **Note:** running the app on the CPU agents will be slower.
 
-This application allows you to run the MMOCR Text Detection and Recognition models on images. The application uses the `DBNetpp` detection model and `ABINet` recognition model. The application will create a new project and datasets with the results of the inference, which will include rectangle annotations with text labels.
+This application allows you to run the MMOCR Text Detection and Recognition models on images. The application uses the `DBNetpp` detection model and `ABINet` recognition model and can be used for automatic data pre-labeling. The application will create a new project and datasets with the results of the inference, which will include rectangle annotations with text labels.<br>
+
+The resulting project will have:
+
+- Rectangle annotations with name `text`
+- Text labels with name `ocr` and recognized text as a value
+
+## Related Apps
+
+- [Object tags editor](https://ecosystem.supervisely.com/apps/object-tags-redactor) - you can use this app for easy and convenient editing of the tags after running the MMOCR Inference app.
 
 ## How To Run
 
@@ -29,6 +40,7 @@ To run the app you will need a project with images. The app can be launched from
 - [running the app from the Ecosystem](#running-the-app-from-the-ecosystem)
 - [running the app from the images project](#running-the-app-from-the-images-project)
 - [running the app from the images dataset](#running-the-app-from-the-images-dataset)
+- [editing results](#editing-results)
 
 ### Running the app from the Ecosystem
 
@@ -55,3 +67,17 @@ To run the app you will need a project with images. The app can be launched from
 <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262659651-929f09b6-35e3-4473-961f-8696fa4ba9fc.png"/><br><br>
 
 **Step 2:** Press the Run button<br><br>
+
+### Editing results
+
+After running the app you can manually edit tags and annotations in the [Supervisely Labeling Tool](https://ecosystem.supervisely.com/annotation_tools/image-labeling-tool-v1) and add new annotations if needed.
+
+**Step 1:** Select the needed object<br><br>
+
+**Step 2:** Press the edit button in the Tags tab<br><br>
+
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262668435-80cb90e8-cba4-4eff-b59d-62d8a0710df9.png">
+
+## Acknowledgment
+
+- [MMOCR](https://github.com/open-mmlab/mmocr)
