@@ -1,5 +1,5 @@
 <div align="center" markdown>
-<img src="poster placeholder"/>
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262649281-bacf9de8-d82c-4c4f-8660-f4c96fb99889.png"/>
 
 # MMOCR Inference - Text Detection and Recognition on images
 
@@ -15,8 +15,6 @@
 [![runs](https://app.supervise.ly/img/badges/runs/supervisely-ecosystem/PLACEHOLDER-FOR-APP-PATH.png)](https://supervise.ly)
 
 </div>
-
-<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262379234-c449c14f-6b37-4d95-9d9b-434355d626b4.png"><br><br>
 
 ## Overview
 
