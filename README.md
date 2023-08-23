@@ -34,31 +34,27 @@ To run the app you will need a project with images. The app can be launched from
 
 **Step 1:** Run the app<br><br>
 
-<img src="placeholder for screenshot"/><br><br>
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262659619-a643c84d-1418-456e-9110-ec107dbe4601.png"/><br><br>
 
 **Step 2:** Select a project or a dataset and press the Run button<br><br>
 
-<img src="placeholder for screenshot"/><br><br>
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262659634-4f0a1037-4af9-4516-9c53-fad3576b2816.png"/><br><br>
 
 ### Running the app from the images project
 
 **Step 1:** Run the app from a context menu of the images project<br><br>
 
-<img src="placeholder for screenshot"/><br><br>
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262659643-f9d07c69-864d-4aaf-9331-84322d6df4ef.png"/><br><br>
 
 **Step 2:** Press the Run button<br><br>
-
-<img src="placeholder for screenshot"/><br><br>
 
 ### Running the app from the images dataset
 
 **Step 1:** Run the app from a context menu of the images dataset<br><br>
 
-<img src="placeholder for screenshot"/><br><br>
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262659651-929f09b6-35e3-4473-961f-8696fa4ba9fc.png"/><br><br>
 
 **Step 2:** Press the Run button<br><br>
-
-<img src="placeholder for screenshot"/><br><br>
 
 ## Demo
 
