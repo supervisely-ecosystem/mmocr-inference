@@ -55,9 +55,3 @@ To run the app you will need a project with images. The app can be launched from
 <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262659651-929f09b6-35e3-4473-961f-8696fa4ba9fc.png"/><br><br>
 
 **Step 2:** Press the Run button<br><br>
-
-## Demo
-
-Example of running the app from Ecosystem with results:
-
-![](placeholder for gif)
