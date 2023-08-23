@@ -5,7 +5,7 @@
   "description": "Text Detection and Recognition on images",
   "icon": "https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262644874-45dc5022-a7dd-488d-be48-8ab43449b0a9.png",
   "icon_cover": true,
-  "poster": "https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262649281-bacf9de8-d82c-4c4f-8660-f4c96fb99889.png",
+  "poster": "https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262653323-44374612-28aa-4750-81df-c43efd561aa6.png",
   "categories": ["neural network", "images", "nn tools"],
   "need_gpu": false,
   "gpu": "preferred",

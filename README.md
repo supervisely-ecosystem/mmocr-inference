@@ -1,5 +1,5 @@
 <div align="center" markdown>
-<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262649281-bacf9de8-d82c-4c4f-8660-f4c96fb99889.png"/>
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262653323-44374612-28aa-4750-81df-c43efd561aa6.png"/>
 
 # MMOCR Inference - Text Detection and Recognition on images
 
