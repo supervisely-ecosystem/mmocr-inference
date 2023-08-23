@@ -90,4 +90,4 @@ You can use the [Object tags editor](https://ecosystem.supervisely.com/apps/obje
 
 ## Acknowledgment
 
-- [MMOCR](https://github.com/open-mmlab/mmocr)
+- This app is based on the great work `MMOCR` ([github](https://github.com/open-mmlab/mmocr)). ![GitHub Org's stars](https://img.shields.io/github/stars/open-mmlab/mmocr?style=social)
