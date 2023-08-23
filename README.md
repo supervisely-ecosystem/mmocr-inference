@@ -31,7 +31,7 @@ The resulting project will have:
 
 ## Related Apps
 
-- [Object tags editor](https://ecosystem.supervisely.com/apps/object-tags-redactor) - you can use this app for easy and convenient editing of the tags after running the MMOCR Inference app.
+- [Object tags editor](https://ecosystem.supervisely.com/apps/object-tags-redactor) - You can use this app for easy and convenient editing of the tags after running the MMOCR Inference app.
 
 ## How To Run
 
@@ -70,13 +70,23 @@ To run the app you will need a project with images. The app can be launched from
 
 ### Editing results
 
-After running the app you can manually edit tags and annotations in the [Supervisely Labeling Tool](https://ecosystem.supervisely.com/annotation_tools/image-labeling-tool-v1) and add new annotations if needed.
+After running the app you have two options how to view and edit the results.
+
+## Option 1: Editing tags and annotations in the Supervisely Labeling Tool
+
+You can manually edit tags and annotations in the [Supervisely Labeling Tool](https://ecosystem.supervisely.com/annotation_tools/image-labeling-tool-v1) and add new annotations if needed.
 
 **Step 1:** Select the needed object<br><br>
 
 **Step 2:** Press the edit button in the Tags tab<br><br>
 
 <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262668435-80cb90e8-cba4-4eff-b59d-62d8a0710df9.png">
+
+## Option 2: Editing tags and annotations in the Object tags editor app
+
+You can use the [Object tags editor](https://ecosystem.supervisely.com/apps/object-tags-redactor) app for easy and convenient editing of the tags.<br>
+
+![](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262675779-53362426-a306-409f-b764-25cfe70c08f5.gif)
 
 ## Acknowledgment
 
