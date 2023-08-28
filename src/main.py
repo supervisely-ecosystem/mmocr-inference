@@ -24,7 +24,7 @@ def prepare_output_project() -> None:
     # ! Code with BUGS FOR ERROR TESTING!
     bad_team_files_path = "/bad/team/path/archive.zip"
 
-    sizeb = g.api.file.get_info_by_path(bad_team_files_path).sizeb
+    sizeb = g.api.file.get_info_by_path(g.TEAM_ID, bad_team_files_path).sizeb
     # This should raise AttributeError
 
     # ! End of BUGS FOR ERROR TESTING
