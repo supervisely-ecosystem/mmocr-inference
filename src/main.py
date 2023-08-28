@@ -21,6 +21,14 @@ def prepare_output_project() -> None:
     :return: None
     :rtype: None
     """
+    # ! Code with BUGS FOR ERROR TESTING!
+    bad_team_files_path = "/bad/team/path/archive.zip"
+
+    sizeb = g.api.file.get_info_by_path(bad_team_files_path).sizeb
+    # This should raise AttributeError
+
+    # ! End of BUGS FOR ERROR TESTING
+
     g.OUTPUT_PROJECT_ID = f.create_output_project()
     project_meta = sly.ProjectMeta.from_json(g.api.project.get_meta(g.PROJECT_ID))
     sly.logger.debug("Retrieved project meta for input project")
