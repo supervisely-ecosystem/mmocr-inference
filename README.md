@@ -20,6 +20,14 @@
 
 ## Overview
 
+🔥🔥🔥 Check out our [youtube tutorial](https://youtu.be/g7qfSYkkpUA?si=wKLa1z-0dP3rVhP2) and the [complete guide in our blog](https://supervisely.com/blog/mmocr/):   
+
+<a data-key="sly-embeded-video-link" href="https://youtu.be/g7qfSYkkpUA?si=wKLa1z-0dP3rVhP" data-video-code="g7qfSYkkpUA?si=wKLa1z-0dP3rVhP">
+  <picture>
+    <img src="https://github.com/supervisely-ecosystem/mmocr-inference/assets/106374579/5c7a2e94-0099-4222-9152-9a3267963d1c">
+  <picture>
+</a>
+
 ℹ️ The application can be run both on GPU and CPU agents. It will automatically detect if GPU is available and use it in case it is. **Note:** running the app on the CPU agents will be slower.
 
 This application allows you to run the MMOCR Text Detection and Recognition models on images. The application uses the `DBNetpp` detection model and `ABINet` recognition model and can be used for automatic data pre-labeling. The application will create a new project and datasets with the results of the inference, which will include rectangle annotations with text labels.<br>
