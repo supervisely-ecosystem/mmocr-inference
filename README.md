@@ -8,7 +8,7 @@
   <a href="#How-To-Run">How To Run</a>
 </p>
 
-[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](https://ecosystem.supervise.ly/apps/supervisely-ecosystem/mmocr-inference)
+[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](../../../../supervisely-ecosystem/mmocr-inference)
 [![](https://img.shields.io/badge/slack-chat-green.svg?logo=slack)](https://supervise.ly/slack)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/supervisely-ecosystem/mmocr-inference)
 [![views](https://app.supervise.ly/img/badges/views/supervisely-ecosystem/mmocr-inference.png)](https://supervise.ly)
@@ -39,7 +39,7 @@ The resulting project will have:
 
 ## Related Apps
 
-- [Object tags editor](https://ecosystem.supervisely.com/apps/object-tags-redactor) - You can use this app for easy and convenient editing of the tags after running the MMOCR Inference app.
+- [Object tags editor](../../../../supervisely-ecosystem/object-tags-redactor) - You can use this app for easy and convenient editing of the tags after running the MMOCR Inference app.
 
 ## How To Run
 
@@ -92,7 +92,7 @@ You can manually edit tags and annotations in the [Supervisely Labeling Tool](ht
 
 ## Option 2: Editing tags in the Object tags editor app
 
-You can use the [Object tags editor](https://ecosystem.supervisely.com/apps/object-tags-redactor) app for easy and convenient editing of the tags.<br>
+You can use the [Object tags editor](../../../../supervisely-ecosystem/object-tags-redactor) app for easy and convenient editing of the tags.<br>
 
 ![](https://github-production-user-asset-6210df.s3.amazonaws.com/118521851/262675779-53362426-a306-409f-b764-25cfe70c08f5.gif)
 
