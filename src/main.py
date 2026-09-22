@@ -36,6 +36,17 @@ def prepare_output_project() -> None:
     g.TAG_META = project_meta.tag_metas.get(g.TAG_NAME)
     sly.logger.debug(f"Saved tag meta for tag {g.TAG_NAME}")
 
+    # Checking if score tag meta exists in project meta, if not - adding it.
+    if not project_meta.tag_metas.get(g.SCORE_TAG_NAME):
+        sly.logger.debug(f"Tag {g.SCORE_TAG_NAME} was not found in project meta. Adding...")
+        new_score_tag = sly.TagMeta(g.SCORE_TAG_NAME, sly.TagValueType.ANY_NUMBER)
+        project_meta = project_meta.add_tag_meta(new_score_tag)
+        sly.logger.debug(f"Tag {g.SCORE_TAG_NAME} was added to project meta.")
+
+    # Saving score tag meta to global variable to access it from inference.
+    g.SCORE_TAG_META = project_meta.tag_metas.get(g.SCORE_TAG_NAME)
+    sly.logger.debug(f"Saved tag meta for tag {g.SCORE_TAG_NAME}")
+
     # Checking if object class exists in project meta, if not - adding it.
     if not project_meta.obj_classes.get(g.OBJECT_NAME):
         sly.logger.debug(f"Object class {g.OBJECT_NAME} was not found in project meta. Adding...")
@@ -74,7 +85,11 @@ def main() -> None:
         image_names = [image_info.name for image_info in image_infos]
         image_paths = [os.path.join(dataset_dir, image_name) for image_name in image_names]
 
+        # Images which were successfully processed, kept aligned with their annotations.
+        processed_image_ids = []
+        processed_image_names = []
         anns = []
+        failed_image_names = []
 
         sly.logger.debug(f"Starting download images from dataset {dataset_name} by batches...")
 
@@ -82,24 +97,50 @@ def main() -> None:
             total=len(image_paths),
             message=f"Running inference on images from dataset {dataset_name}",
         ) as pbar:
-            for batched_image_ids, batched_image_paths in zip(
-                sly.batched(image_ids), sly.batched(image_paths)
+            for batched_image_ids, batched_image_names, batched_image_paths in zip(
+                sly.batched(image_ids), sly.batched(image_names), sly.batched(image_paths)
             ):
                 g.api.image.download_paths(dataset_id, batched_image_ids, batched_image_paths)
                 sly.logger.debug(
                     f"Downloaded batch of {len(batched_image_ids)} images to {dataset_dir}"
                 )
 
-                for image_path in batched_image_paths:
-                    ann = inference.get_ann(image_path)
+                for image_id, image_name, image_path in zip(
+                    batched_image_ids, batched_image_names, batched_image_paths
+                ):
+                    # Inference can fail on a single image (e.g. a degenerate detection on a
+                    # very small image). Such an image is skipped, so it cannot abort the
+                    # whole dataset, and the remaining images are still processed.
+                    try:
+                        ann = inference.get_ann(image_path)
+                    except Exception:
+                        sly.logger.warning(
+                            f"Inference failed on image {image_name}, it will be skipped.",
+                            exc_info=True,
+                        )
+                        sly.fs.silent_remove(image_path)
+                        failed_image_names.append(image_name)
+                        pbar.update(1)
+                        continue
+
+                    processed_image_ids.append(image_id)
+                    processed_image_names.append(image_name)
                     anns.append(ann)
                     pbar.update(1)
 
                 sly.logger.debug(f"Processed batch of {len(batched_image_ids)} images")
 
-        sly.logger.debug(f"Finished inference on {len(image_paths)} images")
+        sly.logger.debug(f"Finished inference on {len(processed_image_ids)} images")
 
-        f.upload_images_with_anns(image_ids, image_names, anns, output_dataset_id)
+        if failed_image_names:
+            sly.logger.warning(
+                f"Skipped {len(failed_image_names)} of {len(image_paths)} images in dataset "
+                f"{dataset_name}, inference failed on them: {failed_image_names}"
+            )
+
+        f.upload_images_with_anns(
+            processed_image_ids, processed_image_names, anns, output_dataset_id
+        )
 
         sly.logger.info(f"Finished processing dataset: {dataset_name} with ID: {dataset_id}")
 

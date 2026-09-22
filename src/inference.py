@@ -32,6 +32,8 @@ def get_ann(image_path: str) -> sly.Annotation:
         label = f.det_polygon_2_label(rect)
         # Adding text recognition tag to the label.
         label = label.add_tag(sly.Tag(g.TAG_META, text))
+        # Adding recognition confidence tag, so weak reads can be filtered out downstream.
+        label = label.add_tag(sly.Tag(g.SCORE_TAG_META, f.rec_score_2_value(text_score)))
         labels.append(label)
 
     # Creating Supervisely annotation from labels.
