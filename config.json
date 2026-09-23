@@ -11,7 +11,7 @@
   "gpu": "preferred",
   "community_agent": false,
   "docker_image": "supervisely/mmocr:1.0.0",
-  "instance_version": "6.6.7",
+  "instance_version": "6.9.11",
   "entrypoint": "python src/main.py",
   "port": 8000,
   "headless": true,
