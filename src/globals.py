@@ -27,8 +27,10 @@ sly.logger.info(
 PROJECT_NAME = api.project.get_info_by_id(PROJECT_ID).name
 
 # Names of the model, which will be used in inference.
+# The recognizer must use the 90-character case-sensitive dictionary, otherwise uppercase
+# text (serial numbers, plates, stamped codes) can only ever come back lowercased.
 DET_MODEL = "DBNetpp"
-REC_MODEL = "ABINet"
+REC_MODEL = "RobustScanner"
 sly.logger.info(f"Detection model: {DET_MODEL}, recognition model: {REC_MODEL}")
 
 # Automatically detect if CUDA is available and set the device.
@@ -46,6 +48,8 @@ sly.logger.info(f"Device: {DEVICE}, batch size: {BATCH_SIZE}")
 # Can be changed to any other names.
 TAG_NAME = "ocr"
 TAG_META = None
+SCORE_TAG_NAME = "ocr_score"
+SCORE_TAG_META = None
 OBJECT_NAME = "text"
 OBJECT_CLASS = sly.ObjClass(OBJECT_NAME, sly.Rectangle, [0, 255, 0])
 OUTPUT_PROJECT_ID = None

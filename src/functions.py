@@ -56,6 +56,22 @@ def det_polygon_2_label(rect: List) -> sly.Label:
     return label
 
 
+def rec_score_2_value(text_score) -> float:
+    """Converts a predicted recognition score to a single float tag value.
+
+    Depending on the recognizer, MMOCR returns either one score per text instance or one
+    score per character, so a per-character list is averaged into a single value.
+
+    :param text_score: recognition score as returned by MMOCR.
+    :type text_score: Union[float, List[float]]
+    :return: recognition score rounded to four decimal places.
+    :rtype: float
+    """
+    if isinstance(text_score, (list, tuple)):
+        text_score = sum(text_score) / len(text_score) if len(text_score) > 0 else 0.0
+    return round(float(text_score), 4)
+
+
 def upload_images_with_anns(
     image_ids: List[int],
     image_names: List[str],
